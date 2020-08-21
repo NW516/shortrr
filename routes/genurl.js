@@ -12,7 +12,7 @@ router.post('/', async (request, response) => {
   const baseUrl = config.get('baseURI');
 
   if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json('Invalid base url');
+    return response.status(401).json('Invalid base url');
   }
 
   const urlCode = shortid.generate();
@@ -23,7 +23,7 @@ router.post('/', async (request, response) => {
       let url = await Url.findOne({ longUrl });
 
       if (url) {
-        res.json(url);
+        response.json(url);
       } else {
         const shortUrl = baseUrl + '/' + urlCode;
 
@@ -36,18 +36,16 @@ router.post('/', async (request, response) => {
 
         await url.save();
 
-        res.json(url);
+        response.json(url);
       }
     } catch (err) {
       console.error(err.message);
-      res.status(500).json('Server Error');
+      response.status(500).json('Server Error');
     }
   } else {
-     res.status(401).json('Invalid Long Url');
+     response.status(401).json('Invalid Long Url');
   }
 
 });
 
 module.exports = router;
-
-
