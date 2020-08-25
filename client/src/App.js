@@ -1,26 +1,80 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Animation from './components/Animation';
+import ShortUrl from './components/ShortUrl';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+          longUrl: '',
+          shortUrl: ''
+       };
+    }
+
+    onChange(e) {
+        this.setState({
+            longUrl: e.target.value
+        });
+    }
+
+    handleClear() {
+      this.setState({
+        longUrl: '',
+        shortUrl: ''
+      });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+        fetch(this.props.action, {
+            method: this.props.method,
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Origin': true
+            },
+            body: JSON.stringify({"longUrl": this.state.longUrl})
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          this.setState({shortUrl: data.shortUrl});
+        });
+
+        this.setState({longUrl: ''});
+        this.setState({shortUrl: ''});
+    }
+
+  render() {
+    return (
+      <div className="App">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
+        <Animation />
+        <form
+          id="url-entry"
+          action={this.props.action}
+          method={this.props.method}
+          onSubmit={(e) => this.onSubmit(e)}>
+          <label>
+            <span className="text">URL:</span>
+            <input onChange={(e) => this.onChange(e)} type="text" name="longUrl" className="url-input"/><br/>
+          </label>
+          <div className="align-right">
+              <button>Submit</button>
+              <input type="reset" onClick={() => this.handleClear()} value="Clear"/>
+          </div>
+        </form>
+        <ShortUrl shorty={this.state.shortUrl} />
+      </div>
+    );
+  }
 }
 
-export default App;
+App.defaultProps = {
+    action: 'http://localhost:5000/api/genurl',
+    method: 'post'
+};

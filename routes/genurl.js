@@ -7,18 +7,19 @@ const config = require('config');
 const Url = require('../model/Url');
 
 router.post('/', async (request, response) => {
-  // We will handle the requested data here
-  const { longUrl } = request.body;
+  const longUrl = request.body.longUrl;
+  console.log(longUrl);
   const baseUrl = config.get('baseURI');
 
   if (!validUrl.isUri(baseUrl)) {
+    console.log("invalid base url");
     return response.status(401).json('Invalid base url');
   }
 
   const urlCode = shortid.generate();
 
   if (validUrl.isUri(longUrl)) {
-     // We will generate short URL here
+     //We will generate short URL here
      try {
       let url = await Url.findOne({ longUrl });
 
@@ -37,12 +38,14 @@ router.post('/', async (request, response) => {
         await url.save();
 
         response.json(url);
+        console.log(url);
       }
     } catch (err) {
       console.error(err.message);
       response.status(500).json('Server Error');
     }
   } else {
+     console.log("invalid long url: " + longUrl);
      response.status(401).json('Invalid Long Url');
   }
 
