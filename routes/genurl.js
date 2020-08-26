@@ -18,7 +18,7 @@ router.post('/', async (request, response) => {
 
   const urlCode = shortid.generate();
 
-  if (validUrl.isUri(longUrl)) {
+  if (validUrl.isWebUri(longUrl)) {
      //We will generate short URL here
      try {
       let url = await Url.findOne({ longUrl });
@@ -46,7 +46,7 @@ router.post('/', async (request, response) => {
     }
   } else {
      console.log("invalid long url: " + longUrl);
-     response.status(401).json('Invalid Long Url');
+     response.status(401).json('Invalid URL');
   }
 
 });

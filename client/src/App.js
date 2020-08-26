@@ -9,7 +9,8 @@ export default class App extends Component {
         super(props, context);
         this.state = {
           longUrl: '',
-          shortUrl: ''
+          shortUrl: '',
+          errorMsg: ''
        };
     }
 
@@ -22,7 +23,8 @@ export default class App extends Component {
     handleClear() {
       this.setState({
         longUrl: '',
-        shortUrl: ''
+        shortUrl: '',
+        errorMsg: ''
       });
     }
 
@@ -42,7 +44,11 @@ export default class App extends Component {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          this.setState({shortUrl: data.shortUrl});
+          if (data === "Invalid URL") {
+            this.setState({errorMsg: data});
+          } else {
+            this.setState({shortUrl: data.shortUrl});
+          }
         });
 
         this.setState({longUrl: ''});
@@ -68,7 +74,7 @@ export default class App extends Component {
               <input type="reset" onClick={() => this.handleClear()} value="Clear"/>
           </div>
         </form>
-        <ShortUrl shorty={this.state.shortUrl} />
+        <ShortUrl err={this.state.errorMsg} shorty={this.state.shortUrl} />
       </div>
     );
   }
