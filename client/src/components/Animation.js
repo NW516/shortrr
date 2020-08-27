@@ -9,27 +9,25 @@ const Animation = () => {
   const r4 = useRef(null);
 
   useEffect(() => {
-      gsap.to (r1.current, {x: -20, duration: 1.5});
-      gsap.to (r2.current, {x: -40, duration: 1.5});
-      gsap.to (r3.current, {x: -60, duration: 1.5});
-      gsap.to (r4.current, {x: -80, duration: 1.5});
+      gsap.to (r1.current, {x: -30, duration: 2.4});
+      gsap.to (r2.current, {x: -50, duration: 2.4});
+      gsap.to (r3.current, {x: -70, duration: 2.4});
+      gsap.to (r4.current, {x: -90, duration: 2.4});
 
   }, []);
 
   return (
     <div>
-    <svg viewBox="0 0 300 45" width="340" height="80">
-      <text className="shortr-logo" x="0" y="16.6" fill="#de4431">S</text>
-      <text className="shortr-logo" x="20" y="16.6" fill="#de4431">H</text>
-      <text className="shortr-logo" x="40" y="16.6" fill="#de4431">O</text>
-      <text className="shortr-logo" x="60" y="16.6" fill="#de4431">R</text>
-      <text className="shortr-logo" x="80" y="16.6" fill="#de4431">T</text>
-      <text className="shortr-logo" x="100" y="16.6" fill="#de4431">R</text>
-      <text ref={r1} className="shortr-logo" x="120" y="16.6" r="16.1" fill="#de4431">R</text>
-      <text ref={r2} className="shortr-logo" x="140" y="16.6" r="16.1" fill="#de4431">R</text>
-      <text ref={r3} className="shortr-logo" x="160" y="16.6" r="16.1" fill="#de4431">R</text>
-      <text ref={r4} className="shortr-logo" x="180" y="16.6" r="16.1" fill="#de4431">R</text>
-      <text className="shortr-subhead" x="0" y="40" fill="#de4431">Save characters and shorten your links:</text>
+    <svg viewBox="0 0 300 45" width="340" height="50">
+      <text className="shortr-logo" x="0" y="45" fill="#1fbddf">S</text>
+      <text className="shortr-logo" x="20" y="45" fill="#1fbddf">H</text>
+      <text className="shortr-logo" x="40" y="45" fill="#1fbddf">O</text>
+      <text className="shortr-logo" x="60" y="45" fill="#1fbddf">R</text>
+      <text className="shortr-logo" x="80" y="45" fill="#1fbddf">T</text>
+      <text className="shortr-logo" x="100" y="45" fill="#1fbddf">R</text>
+      <text ref={r1} className="shortr-logo" x="130" y="45" fill="#1fbddf">R</text>
+      <text ref={r2} className="shortr-logo" x="150" y="45" fill="#1fbddf">R</text>
+      <text ref={r3} className="shortr-logo" x="170" y="45" fill="#1fbddf">R</text>
     </svg>
     </div>
   );

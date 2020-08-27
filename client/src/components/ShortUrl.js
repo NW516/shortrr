@@ -8,7 +8,7 @@ const ShortUrl = (props) => {
   if (err !== "") {
     return (
       <div>
-        <p className="shorturl-display">Please enter a valid URL</p>
+        <p className="shorturl-error-display">Please enter a valid URL</p>
       </div>
     );
   }

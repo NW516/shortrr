@@ -58,23 +58,28 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
-        <Animation />
-        <form
-          id="url-entry"
-          action={this.props.action}
-          method={this.props.method}
-          onSubmit={(e) => this.onSubmit(e)}>
-          <label>
-            <span className="text">URL:</span>
-            <input onChange={(e) => this.onChange(e)} type="text" name="longUrl" className="url-input"/><br/>
-          </label>
-          <div className="align-right">
+        <div className="header">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
+          <Animation />
+        </div>
+        <div className="hero-image">
+          <form
+            id="url-entry"
+            action={this.props.action}
+            method={this.props.method}
+            onSubmit={(e) => this.onSubmit(e)}
+            className="url-input-container">
+            <label>
+              <span className="shortr-subhead">Save characters and shorten your links:</span>
+              <input onChange={(e) => this.onChange(e)} type="text" name="longUrl" className="url-input"/><br/>
+            </label>
+            <div className="button-container">
               <button>Submit</button>
               <input type="reset" onClick={() => this.handleClear()} value="Clear"/>
-          </div>
-        </form>
-        <ShortUrl err={this.state.errorMsg} shorty={this.state.shortUrl} />
+            </div>
+          </form>
+          <ShortUrl err={this.state.errorMsg} shorty={this.state.shortUrl} />
+        </div>
       </div>
     );
   }
