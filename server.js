@@ -23,7 +23,7 @@ app.use((req, res, next) => {
  next();
 });
 
-app.use('/api/genurl', require('./routes/genUrl'));
+app.use('/api/genurl', require('./routes/genurl'));
 app.use('/', require('./routes/redirect'));
 
 // Start Express
