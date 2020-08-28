@@ -16,6 +16,8 @@ app.use(bodyParser.json());
 // Add Express Port
 const PORT = process.env.PORT || 5000;
 
+// Returns response (for testing)
+app.use('/', (request, response) => response.send('Hello'));
 
 app.use((req, res, next) => {
  res.header("Access-Control-Allow-Origin", "*");
