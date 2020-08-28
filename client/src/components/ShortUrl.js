@@ -15,7 +15,7 @@ const ShortUrl = (props) => {
   if (shortUrl !== "") {
     return (
       <div>
-        <p className="shorturl-display">Your shortened URL is ready to use: <a href={props.shorty} rel="noopener noreferrer" target="_blank">{props.shorty}</a></p>
+        <p className="shorturl-display">Your shortened URL is ready to use:<br/> <a href={props.shorty} rel="noopener noreferrer" target="_blank">{props.shorty}</a></p>
     </div>
     );
   }
