@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 // Initialize Express
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 // Connect Database
 const connectDB = require('./config/db');
