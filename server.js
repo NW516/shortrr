@@ -16,9 +16,6 @@ app.use(bodyParser.json());
 // Add Express Port
 const PORT = process.env.PORT || 5000;
 
-// Returns response (for testing)
-app.use('/', (request, response) => response.send('Hello'));
-
 app.use((req, res, next) => {
  res.header("Access-Control-Allow-Origin", "*");
  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -27,6 +24,11 @@ app.use((req, res, next) => {
 
 app.use('/api/genurl', require('./routes/genurl'));
 app.use('/', require('./routes/redirect'));
+
+// The "catchall": just  React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // Start Express
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
