@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "heroku-postbuild": "cd client && npm build",
     "dev": "nodemon server"
   },
   "author": "",
