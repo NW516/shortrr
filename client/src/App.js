@@ -71,7 +71,7 @@ export default class App extends Component {
             className="url-input-container">
             <label>
               <span className="shortr-subhead">Save characters and shorten your links:</span>
-              <input onChange={(e) => this.onChange(e)} type="text" name="longUrl" className="url-input"/><br/>
+              <input onChange={(e) => this.onChange(e)} type="text" name="longUrl" className="url-input" autocomplete="off"/><br/>
             </label>
             <div className="button-container">
               <button>Submit</button>

@@ -50,3 +50,14 @@
   display: flex;
   justify-content: center;
 }
+
+@media (min-width: 600px) {
+
+  .shortr-subhead {
+    font-size: 18px;
+    font-style: italic;
+    font-family: Impact, sans-serif;
+    color: #ffffff;
+  }
+
+}
