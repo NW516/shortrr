@@ -27,6 +27,7 @@ router.post('/', async (request, response) => {
         response.json(url);
       } else {
         const shortUrl = baseUrl + '/' + urlCode;
+        console.log(shortUrl);
 
         url = new Url({
           longUrl,
@@ -38,7 +39,7 @@ router.post('/', async (request, response) => {
         await url.save();
 
         response.json(url);
-        console.log(url);
+        console.log("Success, url is: " + url);
       }
     } catch (err) {
       console.error(err.message);
