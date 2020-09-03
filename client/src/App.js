@@ -86,6 +86,6 @@ export default class App extends Component {
 }
 
 App.defaultProps = {
-    action: 'http://localhost:5000/api/genurl',
+    action: 'http://shortrr.herokuapp.com:5000/api/genurl',
     method: 'post'
 };
